@@ -1,7 +1,24 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const proxyObj = {}
 
+// ===============================跨域请求==================================
+// 本地后台代理
+proxyObj['/dev-api/admin'] = {
+  // websocket
+  ws: false,
+  // 目标地址
+  target: 'http://localhost:8081',
+  // 发送请求头 host 会被设置 target
+  changeOrigin: true,
+  // 不重写请求地址
+  pathRewrite: {
+    '^/dev-api/admin': '/dev-api/admin'
+  }
+}
+
+// ===================================================================
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -32,6 +49,10 @@ module.exports = {
   devServer: {
     port: port,
     open: true,
+    // 代理对象 - 添加失败
+    // changeOrigin: true,
+    // proxy: proxyObj,
+    // clientLogLevel: 'info'
     overlay: {
       warnings: false,
       errors: true
