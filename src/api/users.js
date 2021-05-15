@@ -1,9 +1,9 @@
-import request from '@/utils/request'
+import my_request from '@/utils/request'
 
-export function getAllUser() {
-  return request({
+export function getAllUser(params) {
+  return my_request({
     url: '/admin/get-all-user',
     method: 'get',
-    // data
+    data: params
   })
 }

@@ -15,6 +15,7 @@ export default {
           console.log(res)
         }
       }).catch(err=>{
+        console.log('------------')
         console.log(err)
       })
     }

@@ -5,7 +5,7 @@ const proxyObj = {}
 
 // ===============================跨域请求==================================
 // 本地后台代理
-proxyObj['/dev-api/admin'] = {
+proxyObj['/admin'] = {
   // websocket
   ws: false,
   // 目标地址
@@ -14,7 +14,7 @@ proxyObj['/dev-api/admin'] = {
   changeOrigin: true,
   // 不重写请求地址
   pathRewrite: {
-    '^/dev-api/admin': '/dev-api/admin'
+    '^/admin': '/admin'
   }
 }
 
@@ -49,15 +49,13 @@ module.exports = {
   devServer: {
     port: port,
     open: true,
-    // 代理对象 - 添加失败
-    // changeOrigin: true,
-    // proxy: proxyObj,
-    // clientLogLevel: 'info'
     overlay: {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js'),
+    // 配置跨域 - 自定义跨域
+    proxy: proxyObj
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
