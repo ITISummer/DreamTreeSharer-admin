@@ -11,7 +11,7 @@ let loadingRequestCount = 0;
 const my_service = axios.create({
   baseURL: '/admin', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  // timeout: 5000 // request timeout
 })
 
 // axios 拦截器配置
@@ -84,4 +84,49 @@ const hideLoading = () => {
     });
   }
 }
-export default my_service
+
+
+/*===============================axios 请求公共方法===========================*/
+/**
+ * 前缀 url
+ */
+// const baseURL = '/api'
+const baseURL = ''
+/**
+ * 发送一个 axios 异步 get 请求
+ * @param url
+ * @param params
+ * @returns {AxiosPromise}
+ */
+export const getRequest = (url, params) => {
+  return my_service({
+    method: 'get',
+    url: `${baseURL}${url}`,
+    data: params
+  })
+}
+export const postRequest = (url, params) => {
+  console.log('my-request.js->postRequest',params)
+  console.log(url)
+  return my_service({
+    method: 'post',
+    url: `${baseURL}${url}`,
+    data: params
+  })
+}
+export const deleteRequest = (url, params) => {
+  return my_service({
+    method: 'delete',
+    url: `${baseURL}${url}`,
+    data: params
+  })
+}
+export const putRequest = (url, params) => {
+  return my_service({
+    method: 'put',
+    url: `${baseURL}${url}`,
+    data: params
+  })
+}
+
+// export default my_service

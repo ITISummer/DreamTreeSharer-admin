@@ -12,9 +12,9 @@ proxyObj['/admin'] = {
   target: 'http://localhost:8081',
   // 发送请求头 host 会被设置 target
   changeOrigin: true,
-  // 不重写请求地址
+  // 重写请求地址
   pathRewrite: {
-    '^/admin': '/admin'
+    '^/admin': ''
   }
 }
 
