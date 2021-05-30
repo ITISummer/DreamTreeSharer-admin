@@ -49,8 +49,8 @@ my_service.interceptors.response.use(resp=>{
 
   if (resp.status === 200) {
     if (resp.data.statusCode === 200) {
-      Message.success({message: resp.data.message})
       // 返回数据给前端
+      Message.success({message: resp.data.message})
       return resp.data
     } else {
       Message.warning({message: resp.data.message})
